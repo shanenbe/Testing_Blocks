@@ -147,7 +147,7 @@ public class Block {
             line++;
         }
         if(positions.size()==0) throw new RuntimeException("No combination found");
-        Collections.shuffle(positions);
+        Collections.shuffle(positions, Globals.random);
 
         position_of_marked_element = positions.get(0);
 
