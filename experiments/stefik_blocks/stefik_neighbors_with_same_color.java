@@ -2,7 +2,7 @@ package experiments.stefik_blocks;
 
 import java.util.*;
 
-public class stefik_blocks_not_surrounded_25LOC_Depth_9_20Repetitions extends Block_Main{
+public class stefik_neighbors_with_same_color extends Block_Main{
 
     public static final int repetitions = 30;
     public static final int LOC = 25;
@@ -11,7 +11,7 @@ public class stefik_blocks_not_surrounded_25LOC_Depth_9_20Repetitions extends Bl
 
 
     public static void main(String[] args) throws Exception  {
-        new stefik_blocks_not_surrounded_25LOC_Depth_9_20Repetitions().main();
+        new stefik_neighbors_with_same_color().main();
     }
 
 
@@ -19,22 +19,25 @@ public class stefik_blocks_not_surrounded_25LOC_Depth_9_20Repetitions extends Bl
 
         for(int depth = 3; depth <= 6; depth++) {
 
-            Block a_block = Block.generate_random_block(false, false, false, LOC, DEPTH, 1);
+            Block a_block = Block.generate_random_block(true, false, false, LOC, DEPTH, 1);
             a_block.set_any_position_of_depth(depth);
             Block_Task task = new Block_Task(a_block, "" + depth);
             task.treatmentCombination.put("depth", depth);
             task.treatmentCombination.put("correctAnswer", "" + depth);
-            task.treatmentCombination.put("hasColor", "" + false);
+            task.treatmentCombination.put("hasColor", "" + true);
             task.treatmentCombination.put("surroundsChildren", "" + false);
+            task.treatmentCombination.put("similarColor", "" + false);
             tasks.add(task);
 
-            a_block = Block.generate_random_block(true, false, false, LOC, DEPTH, 1);
+            a_block = Block.generate_random_block(true, false, true, LOC, DEPTH, 1);
             a_block.set_any_position_of_depth(depth);
+            a_block.has_similar_color = true;
             task = new Block_Task(a_block, "" + depth);
             task.treatmentCombination.put("depth", depth);
             task.treatmentCombination.put("correctAnswer", "" + depth);
             task.treatmentCombination.put("hasColor", "" + true);
             task.treatmentCombination.put("surroundsChildren", "" + false);
+            task.treatmentCombination.put("similarColor", "" + true);            
             tasks.add(task);
 
 
@@ -55,7 +58,7 @@ public class stefik_blocks_not_surrounded_25LOC_Depth_9_20Repetitions extends Bl
 
         Block_ExperimentExecution run = this.createExperimentExecution(
                 tasks,
-                "depth", "hasColor", "surroundsChildren"
+                "depth", "hasColor", "surroundsChildren", "similarColor"
         );
 
         run.startAllTasks();

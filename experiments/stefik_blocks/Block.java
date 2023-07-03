@@ -19,6 +19,7 @@ public class Block {
     List<Integer> indentations = new ArrayList<Integer>();
 
     boolean has_color = false;
+    boolean has_similar_color = false;
     boolean surrounds_children = false;
 
     public Block() {
@@ -70,7 +71,7 @@ public class Block {
     /**
      * Generate a random statement with given loc and depth. A statement is just a recursive data-structure - not really a statement ;)
      */
-    static Block generate_random_block ( boolean has_color, boolean surrounds_children, int loc, int depth, int position_of_marked_element){
+    static Block generate_random_block ( boolean has_color, boolean surrounds_children, boolean has_similar_color, int loc, int depth, int position_of_marked_element){
 
         if (depth > loc)
             throw new RuntimeException("LOC must be <= depth:  depth=" + depth + " loc=" + loc + ".....but loc<=depth should hold");
@@ -122,6 +123,7 @@ public class Block {
         }
         ret.surrounds_children = surrounds_children;
         ret.has_color = has_color;
+        ret.has_similar_color = has_similar_color;
         ret.createRecBlock();
 
         return ret;
@@ -182,7 +184,13 @@ public class Block {
 
 
             if(has_color) {
+            	if(!has_similar_color)
                     color = colors.get(Globals.random.nextInt(colors.size()-1));
+            	else {
+            		List<Color> colors = Arrays.asList(new Color[]{Color.blue, Color.red});
+            		color = colors.get(Globals.random.nextInt(colors.size()));
+            	}
+            		
             } else {
                 color = Color.lightGray;
             }

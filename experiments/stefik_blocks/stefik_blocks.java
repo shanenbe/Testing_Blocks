@@ -19,7 +19,7 @@ public class stefik_blocks extends Block_Main{
 
         for(int depth = 1; depth <= DEPTH; depth++) {
 
-            Block a_block = Block.generate_random_block(false, false, LOC, DEPTH, 1);
+            Block a_block = Block.generate_random_block(false, false, false, LOC, DEPTH, 1);
             a_block.set_any_position_of_depth(depth);
             Block_Task task = new Block_Task(a_block, "" + depth);
             task.treatmentCombination.put("depth", depth);
@@ -28,7 +28,7 @@ public class stefik_blocks extends Block_Main{
             task.treatmentCombination.put("surroundsChildren", "" + false);
             tasks.add(task);
 
-            a_block = Block.generate_random_block(false, true, LOC, DEPTH, 1);
+            a_block = Block.generate_random_block(false, true, false, LOC, DEPTH, 1);
             a_block.set_any_position_of_depth(depth);
             task = new Block_Task(a_block, "" + depth);
             task.treatmentCombination.put("depth", depth);
@@ -37,7 +37,7 @@ public class stefik_blocks extends Block_Main{
             task.treatmentCombination.put("surroundsChildren", "" + true);
             tasks.add(task);
 
-            a_block = Block.generate_random_block(true, false, LOC, DEPTH, 1);
+            a_block = Block.generate_random_block(true, false, false, LOC, DEPTH, 1);
             a_block.set_any_position_of_depth(depth);
             task = new Block_Task(a_block, "" + depth);
             task.treatmentCombination.put("depth", depth);
@@ -46,7 +46,7 @@ public class stefik_blocks extends Block_Main{
             task.treatmentCombination.put("surroundsChildren", "" + false);
             tasks.add(task);
 
-            a_block = Block.generate_random_block(true, true, LOC, DEPTH, 1);
+            a_block = Block.generate_random_block(true, true, false, LOC, DEPTH, 1);
             a_block.set_any_position_of_depth(depth);
             task = new Block_Task(a_block, "" + depth);
             task.treatmentCombination.put("depth", depth);
