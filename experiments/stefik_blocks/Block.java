@@ -172,9 +172,12 @@ public class Block {
                 child.init();
             }
 
-            if(children.size()==0) {
+            if(children.size()==0 && has_color) {
                 color = colors.get(colors.size() - 1);
                 return;
+            } else if (children.size()==0 && !has_color) {
+            	color = Color.lightGray;
+            	return;
             }
 
 
